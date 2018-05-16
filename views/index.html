@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Speech Recognition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="dictation.css" rel="stylesheet">
+</head>
+<body>
+    <span id="messages">
+        <a href="#" onclick="javascript:action();return false;" id="btn">Loading..</a>
+      </span>
+  <script>
+		var   speech, final_transcript = "";
+
+		function speech_recognition_initialize() {
+		  speech = new webkitSpeechRecognition();
+		  speech.continuous = true;
+		  speech.maxAlternatives = 5;
+		  speech.interimResults = true;
+		  speech.lang =  "cmn-Hans-CN";
+		  speech.start();
+		  //    speech.stop();
+		}
+		   
+		speech_recognition_initialize();
+
+		speech.onresult = function(e) {
+			
+			if (typeof(e.results) == 'undefined') {
+				return;
+			}
+			//console.log(e);
+			for (var i = e.resultIndex; i < e.results.length; ++i) {
+				var val = e.results[i][0].transcript;
+				console.log(val);	
+				if (e.results[i].isFinal) {
+					final_transcript =   val;
+					
+				} 
+			}
+			console.log(final_transcript);
+			//console.log(interim_transcript);
+
+		};
+
+		speech.onerror = function(e) {
+			var msg = e.error + " error";
+			if (e.error === 'no-speech') {
+				msg =  "No microphone  detected ";
+			} else if (e.error === 'audio-capture') {
+				msg =  "Please ensure your microphone is connected ";
+			} else if (e.error === 'not-allowed') {
+				msg = " Please allow Microphone access ";
+			}
+			console.log(msg);
+		};
+
+
+  
+  </script>
+</body>
+</html>

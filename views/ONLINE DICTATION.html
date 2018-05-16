@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dictation - Online Speech Recognition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Amit Agarwal">
+  <meta name="description" content="Dictation is a free online speech recognition software that will help you write emails, documents and essays using your voice narration and without typing." />
+  <meta name="google-site-verification" content="fcnrbrpQfdBT0yQAtKojm8bTMd5hfIcnnTFJxyUXLV8" />
+  <link rel="alternate" type="application/rss+xml" title="Digital Inspiration" href="http://feeds.labnol.org/labnol" />
+  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href="dictation.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+
+
+
+  <div class="notepad">
+    <div class="notepad-heading">
+      <h1>Online Dictation</h1>
+    </div>
+    <div id="speech">
+      <span id="labnol" contenteditable="true"></span>
+      <span id="notfinal"></span>
+      <span id="warning"></span>
+    </div>
+    <div class="whatisthis">
+      <span id="messages">
+        <a href="#" onclick="javascript:action();return false;" id="btn">Loading..</a>
+        <a href="#" onclick="javascript:clearSlate();return false;" id="btnClear">Clear</a>
+        <a href="#" onclick="javascript:save();return false;" id="btnClear" title="Download your text">Save</a>
+        <a href="#" onclick="copied();return false" data-clipboard-target="#labnol" id="btnCopy" title="Copy the text to clipboard">Copy</a>
+        <img id="status" src="listen.gif" />
+      </span>
+    </div>
+  </div>
+
+
+
+  <div class="bottomad">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3152670624293746"
+         data-ad-slot="6819188379"
+         data-ad-format="auto"></ins>
+
+  </div>
+
+  <div class="platforms" id="platformslang">
+    <span class="language">
+      <select name="lang" id="lang" onchange="updateLang(this)">
+        <option value="af-ZA">Afrikaans</option>
+        <option value="id-ID">Bahasa Indonesia</option>
+        <option value="ms-MY">Bahasa Melayu</option>
+        <option value="ca-ES">Català</option>
+        <option value="cs-CZ">Čeština</option>
+        <option value="da-DK">Dansk</option>
+        <option value="de-DE">Deutsch</option>
+        <optgroup label="English">
+          <option value="en-AU">Australia</option>
+          <option value="en-CA">Canada</option>
+          <option value="en-IN">India</option>
+          <option value="en-NZ">New Zealand</option>
+          <option value="en-ZA">South Africa</option>
+          <option value="en-GB">United Kingdom</option>
+          <option value="en-US" selected>United States</option>
+        </optgroup>
+        <optgroup label="Español">
+          <option value="es-AR">Argentina</option>
+          <option value="es-BO">Bolivia</option>
+          <option value="es-CL">Chile</option>
+          <option value="es-CO">Colombia</option>
+          <option value="es-CR">Costa Rica</option>
+          <option value="es-EC">Ecuador</option>
+          <option value="es-SV">El Salvador</option>
+          <option value="es-ES">España</option>
+          <option value="es-US">Estados Unidos</option>
+          <option value="es-GT">Guatemala</option>
+          <option value="es-HN">Honduras</option>
+          <option value="es-MX">México</option>
+          <option value="es-NI">Nicaragua</option>
+          <option value="es-PA">Panamá</option>
+          <option value="es-PY">Paraguay</option>
+          <option value="es-PE">Perú</option>
+          <option value="es-PR">Puerto Rico</option>
+          <option value="es-DO">República Dominicana</option>
+          <option value="es-UY">Uruguay</option>
+          <option value="es-VE">Venezuela</option>
+        </optgroup>
+        <option value="eu-ES">Euskara</option>
+        <option value="fil-PH">Filipino</option>
+        <option value="fr-FR">Français</option>
+        <option value="gl-ES">Galego</option>
+        <option value="hi-IN">हिन्दी</option>
+        <option value="hr_HR">Hrvatski</option>
+        <option value="zu-ZA">IsiZulu</option>
+        <option value="is-IS">Íslenska</option>
+        <optgroup label="Italiano">
+          <option value="it-IT">Italia</option>
+          <option value="it-CH">Svizzera</option>
+        </optgroup>
+        <option value="lt-LT">Lietuvių</option>
+        <option value="hu-HU">Magyar</option>
+        <option value="nl-NL">Nederlands</option>
+        <option value="nb-NO">Norsk bokmål</option>
+        <option value="pl-PL">Polski</option>
+        <optgroup label="Português">
+          <option value="pt-BR">Brasil</option>
+          <option value="pt-PT">Portugal</option>
+        </optgroup>
+        <option value="ro-RO">Română</option>
+        <option value="sl-SI">Slovenščina</option>
+        <option value="sk-SK">Slovenčina</option>
+        <option value="fi-FI">Suomi</option>
+        <option value="sv-SE">Svenska</option>
+        <option value="vi-VN">Tiếng Việt</option>
+        <option value="th-TH">ภาษาไทย</option>
+        <option value="tr-TR">Türkçe</option>
+        <option value="el-GR">Ελληνικά</option>
+        <option value="bg-BG">български</option>
+        <option value="ru-RU">Pусский</option>
+        <option value="sr-RS">Српски</option>
+        <option value="uk-UA">Українська</option>
+        <option value="ko-KR">한국어</option>
+        <optgroup label="中文">
+          <option value="cmn-Hans-CN">普通话 (中国大陆)</option>
+          <option value="cmn-Hans-HK">普通话 (香港)</option>
+          <option value="cmn-Hant-TW">中文 (台灣)</option>
+          <option value="yue-Hant-HK">粵語 (香港)</option>
+        </optgroup>
+        <option value="ja-JP">日本語</option>
+      </select>
+    </span>
+  </div>
+
+
+
+  <script src="filesaver.js"></script>
+  <script src="dictation.js"></script>
+  <script src="clipboard.js"></script>
+  <script>
+
+  var clipboard = new Clipboard('#btnCopy');
+
+  clipboard.on('success', function(e) {
+      e.clearSelection();
+  });
+
+
+
+</script>
+
+<script>
+var addthis_config = {
+    ui_use_css : false
+}
+</script>
+
+ 
+
+</body>
+
+</html>
